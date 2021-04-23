@@ -7,10 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import { HeaderModule } from './header/header.module';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
+import { TemplateCentralizadoResponsivoComponent } from './shared/components/templates/template-centralizado-responsivo/template-centralizado-responsivo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
     
     
   ],
