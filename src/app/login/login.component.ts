@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginDTO } from './interfaces/login-dto. interface';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'hotel-login',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   formularioLogin!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private loginService : LoginService) { }
 
   ngOnInit(): void {
     this.formularioLogin = this.formBuilder.group({
@@ -19,7 +21,11 @@ export class LoginComponent implements OnInit {
     })
   }
   realizaLogin() {
-    const login =  this.formularioLogin.getRawValue()
-    console.log("login", login);
+    const loginDTO =  this.formularioLogin.getRawValue() as LoginDTO;
+    this.loginService
+    .enviaLoginParaOServidor(loginDTO)
+    .subscribe(res => console.log("resposta", res),
+              err => console.log("erro", err))      
+    
   }
 }
