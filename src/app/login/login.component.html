@@ -1,21 +1,28 @@
 <hotel-template-centralizado-responsivo>
 
-      
-        <form>
-            <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
-  </form>
+
+    <form [formGroup]="formularioLogin" (submit)="realizaLogin()">
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuário</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="username"
+                formControlName="username" placeholder="Digite seu nome de usuário">
+                <hotel-exibe-erro-validacao-formulario *ngIf="formularioLogin.get('username')?.errors?.required" 
+                texto="O campo usuário é obrigatório.">                
+                </hotel-exibe-erro-validacao-formulario>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+            <hotel-exibe-erro-validacao-formulario *ngIf="formularioLogin.get('password')?.errors?.required" texto="O campo senha é obrigatório.">                
+            </hotel-exibe-erro-validacao-formulario>
+            <hotel-exibe-erro-validacao-formulario *ngIf="formularioLogin.get('password')?.errors?.minlength" texto="O campo senha deve ter no mínimo 6 caracteres.">                
+            </hotel-exibe-erro-validacao-formulario>
+        </div>
+        <div class="form-group">
+            <br>
+            <button [disabled] = "formularioLogin.invalid"
+            type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+        </div>
+    </form>
 
 </hotel-template-centralizado-responsivo>

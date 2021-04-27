@@ -8,10 +8,12 @@ import { HeaderModule } from './header/header.module';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { TemplateCentralizadoResponsivoComponent } from './shared/components/templates/template-centralizado-responsivo/template-centralizado-responsivo.component';
+import { ExibeErroValidacaoFormularioComponent } from './shared/components/exibe-erro-validacao-formulario/exibe-erro-validacao-formulario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     
     
     
