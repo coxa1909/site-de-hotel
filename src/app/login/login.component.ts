@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginDTO } from './interfaces/login-dto. interface';
+import { LoginOutput } from './interfaces/login-output.interface';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -24,8 +25,11 @@ export class LoginComponent implements OnInit {
     const loginDTO =  this.formularioLogin.getRawValue() as LoginDTO;
     this.loginService
     .enviaLoginParaOServidor(loginDTO)
-    .subscribe(res => console.log("resposta", res),
+    .subscribe(loginOutput => this._salvaDados(loginOutput),
               err => console.log("erro", err))      
     
+  }
+  private _salvaDados(loginOutput: LoginOutput): void {
+   console.log("loginOutput", loginOutput)
   }
 }
